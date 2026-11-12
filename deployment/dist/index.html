@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CybSAGE-MARL interactive CAGE-4 research console" />
+    <meta name="theme-color" content="#08131d" />
+    <title>CybSAGE-MARL · Research Console</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">Skip to research workspace</a>
+    <header class="topbar">
+      <div class="identity">
+        <div class="mark" aria-hidden="true"><span>C</span></div>
+        <div>
+          <p class="eyebrow">Adaptive cyber-defense research console</p>
+          <h1>CybSAGE–MARL</h1>
+        </div>
+      </div>
+      <div class="topbar-meta">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Recorded evidence</span>
+        <span class="topbar-rule"></span>
+        <span>CybORG / CAGE-4</span>
+      </div>
+    </header>
+
+    <nav class="section-nav" aria-label="Research console views">
+      <button class="nav-item is-active" data-view="overview">Overview</button>
+      <button class="nav-item" data-view="simulation">Simulation</button>
+      <button class="nav-item" data-view="explainability">Explainability</button>
+      <button class="nav-item" data-view="evidence">Evidence</button>
+      <button class="nav-item" data-view="resources">Resources</button>
+      <div class="nav-spacer"></div>
+      <a class="quiet-button download-link" href="data/research-console.json" download>Download data</a>
+      <button class="quiet-button" id="exportView" title="Open the browser print dialog">Export view</button>
+    </nav>
+
+    <main id="workspace" class="workspace">
+      <section class="view is-visible" id="view-overview" data-view-panel="overview">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="section-index">01 / System overview</p>
+            <h2>Inspect adaptive defense decisions as evidence, not animation.</h2>
+            <p class="hero-lede">
+              A static, reproducible interface over retained CybSAGE artifacts. Replay recorded
+              CAGE-4 episodes, inspect multi-agent actions, interrogate grounded prototype
+              explanations, and compare reward evidence without changing the underlying results.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" data-go="simulation">Open recorded simulation</button>
+              <button class="secondary-button" data-go="evidence">Inspect evaluation evidence</button>
+            </div>
+          </div>
+          <aside class="scope-card">
+            <div class="scope-card-header">
+              <span>Evidence boundary</span>
+              <span class="verified-badge">Verified artifacts</span>
+            </div>
+            <p id="claimBoundary">Loading evidence boundary…</p>
+            <dl>
+              <div><dt>Environment</dt><dd>CybORG CAGE-4</dd></div>
+              <div><dt>Policy view</dt><dd>Recorded profile playback</dd></div>
+              <div><dt>Explanation view</dt><dd>Synthetic prototype evidence</dd></div>
+            </dl>
+          </aside>
+        </div>
+
+        <div class="metric-grid" id="overviewMetrics" aria-label="Verified summary metrics"></div>
+
+        <section class="panel methodology-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-index">Method chain</p>
+              <h3>From trajectory evidence to a defensible action trace</h3>
+            </div>
+            <span class="panel-note">Interactive stages preserve the proposal structure</span>
+          </div>
+          <div class="method-flow" aria-label="CybSAGE methodology flow">
+            <article><span>01</span><strong>Trajectory</strong><small>State and event sequence</small></article>
+            <i aria-hidden="true">→</i>
+            <article><span>02</span><strong>SSL representation</strong><small>32-dimensional context</small></article>
+            <i aria-hidden="true">→</i>
+            <article><span>03</span><strong>Attack context</strong><small>Regime-aware evidence</small></article>
+            <i aria-hidden="true">→</i>
+            <article><span>04</span><strong>Defense policy</strong><small>Multi-agent action selection</small></article>
+            <i aria-hidden="true">→</i>
+            <article><span>05</span><strong>Feedback</strong><small>Reward and belief update</small></article>
+            <i aria-hidden="true">→</i>
+            <article><span>06</span><strong>Explanation</strong><small>Policy and CTI evidence</small></article>
+          </div>
+        </section>
+
+        <div class="overview-bottom-grid">
+          <section class="panel compact-panel">
+            <div class="panel-heading">
+              <div><p class="section-index">Experiment design</p><h3>Evaluation protocol</h3></div>
+            </div>
+            <div class="protocol-list">
+              <div><span>Training seeds</span><strong>42–51</strong></div>
+              <div><span>Evaluation seeds</span><strong>52–61</strong></div>
+              <div><span>Held-out episodes</span><strong>30</strong></div>
+              <div><span>Maximum steps</span><strong>100</strong></div>
+            </div>
+          </section>
+          <section class="panel compact-panel">
+            <div class="panel-heading">
+              <div><p class="section-index">Interface contract</p><h3>What this console does</h3></div>
+            </div>
+            <ul class="contract-list">
+              <li><span>Playback</span> Uses saved CAGE-4 step traces.</li>
+              <li><span>Comparison</span> Uses saved paired bootstrap statistics.</li>
+              <li><span>Explanation</span> Uses retained prototype CTI evidence.</li>
+              <li><span>No inference</span> Does not run a model in the browser.</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-simulation" data-view-panel="simulation">
+        <div class="view-title-row">
+          <div>
+            <p class="section-index">02 / Recorded simulation</p>
+            <h2>CAGE-4 multi-agent episode playback</h2>
+            <p>Choose a held-out seed and episode, then inspect every recorded defender action.</p>
+          </div>
+          <span class="recorded-chip">Recorded trace · no browser inference</span>
+        </div>
+
+        <div class="simulation-toolbar panel">
+          <label>Evaluation seed<select id="seedSelect"></select></label>
+          <label>Episode<select id="episodeSelect"></select></label>
+          <label>Playback speed<select id="speedSelect"><option value="900">1×</option><option value="450">2×</option><option value="180">5×</option></select></label>
+          <button class="primary-button" id="playButton">Play trace</button>
+          <button class="secondary-button" id="stepButton">Step</button>
+          <button class="quiet-button" id="resetButton">Reset</button>
+        </div>
+
+        <div class="simulation-layout">
+          <section class="panel topology-panel">
+            <div class="panel-heading">
+              <div><p class="section-index">Network state</p><h3>Five-zone defender topology</h3></div>
+              <div class="step-readout"><span>Step</span><strong id="stepNumber">00</strong><small id="stepTotal">/ 99</small></div>
+            </div>
+            <div class="topology" id="topology" aria-label="CAGE-4 defender zones"></div>
+            <div class="timeline-control">
+              <input id="stepSlider" type="range" min="0" max="98" value="0" aria-label="Episode step" />
+              <div class="timeline-labels"><span>Initial state</span><span>Terminal state</span></div>
+            </div>
+          </section>
+
+          <aside class="panel decision-panel">
+            <div class="panel-heading">
+              <div><p class="section-index">Decision frame</p><h3>Current action state</h3></div>
+            </div>
+            <div class="decision-kpis">
+              <div><span>Episode reward</span><strong id="episodeReward">—</strong></div>
+              <div><span>Step reward</span><strong id="stepReward">—</strong></div>
+              <div><span>Runtime</span><strong id="episodeRuntime">—</strong></div>
+            </div>
+            <div class="action-distribution">
+              <div class="subheading-row"><h4>Action distribution</h4><span>episode total</span></div>
+              <div id="actionBars"></div>
+            </div>
+            <div class="profile-box">
+              <span>Selected profile</span>
+              <strong id="profileName">alert_response_decoy</strong>
+              <small>Chosen on training seeds; replay shown on held-out evaluation seeds.</small>
+            </div>
+          </aside>
+        </div>
+
+        <section class="panel chart-panel">
+          <div class="panel-heading">
+            <div><p class="section-index">Reward trace</p><h3>Per-step aggregate reward</h3></div>
+            <span class="panel-note">Cursor follows the selected playback step</span>
+          </div>
+          <svg id="rewardChart" class="chart" viewBox="0 0 1200 230" role="img" aria-label="Reward over episode steps"></svg>
+        </section>
+
+        <section class="panel action-table-panel">
+          <div class="panel-heading">
+            <div><p class="section-index">Agent decisions</p><h3>Recorded actions at the selected step</h3></div>
+          </div>
+          <div class="table-wrap"><table><thead><tr><th>Agent</th><th>Zone</th><th>Action class</th><th>Recorded command</th></tr></thead><tbody id="actionTable"></tbody></table></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-explainability" data-view-panel="explainability">
+        <div class="view-title-row">
+          <div>
+            <p class="section-index">03 / Explainability</p>
+            <h2>Policy- and evidence-grounded action inspection</h2>
+            <p>Explore retained explanation records and the MITRE ATT&amp;CK evidence attached to each decision.</p>
+          </div>
+          <span class="prototype-chip">Prototype synthetic-trajectory evidence</span>
+        </div>
+
+        <div class="explain-layout">
+          <section class="panel explanation-browser">
+            <div class="explain-controls">
+              <label>Episode<select id="explainEpisode"></select></label>
+              <label>Decision step<input id="explainStep" type="range" min="0" max="99" value="0" /></label>
+              <output id="explainStepOutput">00</output>
+            </div>
+            <div class="explanation-main">
+              <div class="decision-token">
+                <span>Selected action</span>
+                <strong id="explainAction">—</strong>
+              </div>
+              <div class="regime-token">
+                <span>Inferred regime label</span>
+                <strong id="explainRegime">—</strong>
+              </div>
+              <blockquote id="explainText">Loading explanation record…</blockquote>
+            </div>
+            <div class="evidence-stack">
+              <div class="subheading-row"><h4>Retrieved ATT&amp;CK evidence</h4><span id="evidenceCount">0 items</span></div>
+              <div id="evidenceCards" class="evidence-cards"></div>
+            </div>
+          </section>
+
+          <aside class="panel fidelity-panel">
+            <div class="panel-heading"><div><p class="section-index">Coverage audit</p><h3>Explanation evidence</h3></div></div>
+            <div class="coverage-ring" id="coverageRing"><div><strong>91%</strong><span>with evidence</span></div></div>
+            <dl class="audit-dl">
+              <div><dt>Records</dt><dd>100</dd></div>
+              <div><dt>Evidence-backed</dt><dd>91</dd></div>
+              <div><dt>Source</dt><dd>MITRE context graph</dd></div>
+              <div><dt>Posterior probabilities</dt><dd>Not retained</dd></div>
+            </dl>
+            <div class="boundary-note">
+              <strong>Interpretation boundary</strong>
+              <p>These explanations belong to the synthetic prototype stage and are not asserted as explanations of the recorded CAGE-4 heuristic trace.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-evidence" data-view-panel="evidence">
+        <div class="view-title-row">
+          <div>
+            <p class="section-index">04 / Evaluation evidence</p>
+            <h2>Reward, uncertainty, and component evidence</h2>
+            <p>Comparisons are limited to six executed CAGE-4 baselines under the retained protocol.</p>
+          </div>
+          <span class="verified-badge large">Paired bootstrap · n = 30</span>
+        </div>
+
+        <div class="evidence-grid">
+          <section class="panel benchmark-panel">
+            <div class="panel-heading"><div><p class="section-index">Benchmark</p><h3>Mean episode reward</h3></div><span class="panel-note">Higher is better</span></div>
+            <div id="benchmarkChart" class="benchmark-chart"></div>
+          </section>
+          <section class="panel effect-panel">
+            <div class="panel-heading"><div><p class="section-index">Uncertainty</p><h3>Paired reward advantage</h3></div><span class="panel-note">95% bootstrap CI</span></div>
+            <svg id="effectChart" class="chart effect-chart" viewBox="0 0 760 390" role="img" aria-label="Paired effect size confidence intervals"></svg>
+          </section>
+        </div>
+
+        <section class="panel ablation-panel">
+          <div class="panel-heading"><div><p class="section-index">Ablation</p><h3>Learned prototype component contribution</h3></div><span class="prototype-chip">Synthetic trajectory task</span></div>
+          <div class="ablation-grid">
+            <div id="ablationChart" class="ablation-chart"></div>
+            <div class="ablation-note">
+              <strong>Decision utility</strong>
+              <p>The full prototype leads learned ablations across retained five-run summaries. The rule-based oracle is shown only as a synthetic upper bound, not as SOTA.</p>
+              <div class="mini-metric"><span>Full model utility</span><strong id="fullUtility">—</strong></div>
+              <div class="mini-metric"><span>Macro-F1</span><strong id="fullMacroF1">—</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="claim-strip">
+          <span>Supported claim</span>
+          <p id="evidenceClaim">Loading claim boundary…</p>
+        </section>
+      </section>
+
+      <section class="view" id="view-resources" data-view-panel="resources">
+        <div class="view-title-row">
+          <div>
+            <p class="section-index">05 / Resources & reproducibility</p>
+            <h2>Deployment profile and retained artifacts</h2>
+            <p>Runtime and storage are reported directly; unmeasured energy is not estimated.</p>
+          </div>
+          <span class="recorded-chip">GitHub Pages compatible</span>
+        </div>
+
+        <div class="resource-grid">
+          <section class="panel runtime-panel">
+            <div class="panel-heading"><div><p class="section-index">Runtime</p><h3>Mean episode wall time</h3></div><span class="panel-note">seconds</span></div>
+            <div id="runtimeChart" class="runtime-chart"></div>
+          </section>
+          <section class="panel storage-panel">
+            <div class="panel-heading"><div><p class="section-index">Model artifacts</p><h3>Retained file footprint</h3></div></div>
+            <div id="artifactList" class="artifact-list"></div>
+          </section>
+          <section class="panel energy-panel">
+            <div class="energy-icon" aria-hidden="true">∅</div>
+            <div><p class="section-index">Energy accounting</p><h3>Not instrumented</h3><p id="energyStatement"></p></div>
+          </section>
+        </div>
+
+        <section class="panel provenance-panel">
+          <div class="panel-heading"><div><p class="section-index">Provenance</p><h3>Artifacts represented in this console</h3></div><span class="panel-note">Repository-relative paths</span></div>
+          <ol id="provenanceList" class="provenance-list"></ol>
+        </section>
+
+        <div class="deployment-strip">
+          <div><span>Architecture</span><strong>Buildless HTML / CSS / JavaScript</strong></div>
+          <div><span>Runtime dependencies</span><strong>None</strong></div>
+          <div><span>Hosting target</span><strong>Static web / GitHub Pages</strong></div>
+          <div><span>Data mode</span><strong>Read-only exported artifacts</strong></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>CybSAGE–MARL Research Console</span>
+      <span>Evidence-bounded interface · retained artifacts only</span>
+    </footer>
+    <div id="loadingState" class="loading-state"><span></span><p>Loading verified research artifacts…</p></div>
+    <script src="app.js" defer></script>
+  </body>
+</html>

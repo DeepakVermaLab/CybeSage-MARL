@@ -1,0 +1,17 @@
+profile,total_reward,selection_priority
+alert_response_decoy,-73.86666666666666,7.5
+staged_decoy_sweep,-81.7,6.8
+adaptive_decoy_monitor,-84.03333333333333,6.2
+decoy_context_mid,-84.03333333333333,5.5
+decoy_context_high,-84.03333333333333,5.2
+decoy_context_low,-84.03333333333333,5.0
+decoy_remove_pressure,-84.03333333333333,4.0
+decoy_guarded,-84.03333333333333,3.0
+monitor_alert_remove,-87.13333333333334,7.0
+decoy_alert_remove,-89.5,7.3
+deception,-96.5,1.0
+rotating_decoy,-96.9,5.8
+balanced,-107.03333333333333,1.0
+containment,-107.03333333333333,1.0
+adaptive_decoy_repair,-124.96666666666667,6.0
+resilience,-494.56666666666666,1.0

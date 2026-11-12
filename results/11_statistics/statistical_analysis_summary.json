@@ -1,0 +1,7 @@
+{
+  "ablation_methods": 7,
+  "paired_tests": 18,
+  "sota_papers_tracked": 6,
+  "direct_sota_comparison_ready": false,
+  "claim_boundary": "Preliminary internal ablation only; not yet CAGE-4 SOTA superiority."
+}

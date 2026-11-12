@@ -1,0 +1,41 @@
+{
+  "captured_on": "2026-11-04",
+  "format": "JPEG",
+  "viewport_width": 1600,
+  "source_url": "http://localhost:8765/",
+  "files": [
+    {
+      "file": "01_system_overview.jpg",
+      "dimensions": "1600x1476",
+      "view": "overview",
+      "purpose": "System overview, verified headline metrics, methodology chain, and evidence boundary"
+    },
+    {
+      "file": "02_recorded_simulation_seed58_episode2_step12.jpg",
+      "dimensions": "1600x1841",
+      "view": "simulation",
+      "parameters": {"seed": 58, "episode": 2, "step": 12},
+      "purpose": "Recorded CAGE-4 multi-agent topology, actions, reward trace, and decision table"
+    },
+    {
+      "file": "03_explainability_step06.jpg",
+      "dimensions": "1600x1168",
+      "view": "explainability",
+      "parameters": {"prototype_episode": 0, "step": 6},
+      "purpose": "Synthetic prototype action explanation with MITRE ATT&CK evidence and coverage boundary"
+    },
+    {
+      "file": "04_evaluation_evidence.jpg",
+      "dimensions": "1600x1493",
+      "view": "evidence",
+      "purpose": "Executed-baseline reward comparison, paired bootstrap intervals, and prototype ablation"
+    },
+    {
+      "file": "05_resources_reproducibility.jpg",
+      "dimensions": "1600x1175",
+      "view": "resources",
+      "purpose": "Runtime, artifact size, energy-measurement limitation, provenance, and deployment profile"
+    }
+  ],
+  "evidence_boundary": "Screenshots visualize retained artifacts. The recorded CAGE-4 profile playback and synthetic prototype explanation/ablation evidence remain explicitly separated."
+}

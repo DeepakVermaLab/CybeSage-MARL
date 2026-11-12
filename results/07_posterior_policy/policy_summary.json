@@ -1,0 +1,10 @@
+{
+  "rows": 6234,
+  "input_dim": 42,
+  "num_actions": 5,
+  "epochs": 5,
+  "epoch": 5,
+  "train_loss": 0.32366884022186965,
+  "val_accuracy": 0.8757016840417001,
+  "val_macro_f1": 0.5799318678000763
+}

@@ -1,0 +1,13 @@
+{
+  "project_name": "CybSAGE-MARL",
+  "local_dataset_root": "/Volumes/LocalDrive1/Datasets/Security",
+  "cyborg_dir": "/Volumes/LocalDrive1/Datasets/Security/CybORG_CAGE_Challenge_4",
+  "mitre_file": "/Volumes/LocalDrive1/Datasets/Security/MITRE_ATTACK_Enterprise_STIX/enterprise-attack.json",
+  "nvd_dir": "/Volumes/LocalDrive1/Datasets/Security/NVD_CVE_API_2_0",
+  "output_root": "outputs",
+  "log_root": "logs",
+  "drive_output_folder_id": "1Oh9o3ipRfNZmeyOl2uatBSHdGrnvnfUc",
+  "rclone_remote": "gdrive:",
+  "seed": 42,
+  "device": "auto"
+}

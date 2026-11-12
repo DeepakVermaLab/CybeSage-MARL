@@ -1,0 +1,23 @@
+{
+  "trajectory_rows": 6234,
+  "methods": [
+    "cybsage_full",
+    "no_ssl",
+    "no_posterior",
+    "state_only",
+    "rule_based_oracle",
+    "majority_action",
+    "random_action"
+  ],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "epochs": 5,
+  "best_method": "rule_based_oracle",
+  "best_macro_f1_mean": 1.0,
+  "best_accuracy_mean": 1.0
+}

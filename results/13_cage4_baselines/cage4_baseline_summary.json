@@ -1,0 +1,37 @@
+{
+  "status": "completed",
+  "episodes_per_policy": 60,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+  ],
+  "max_steps": 100,
+  "policies": [
+    "sleep",
+    "random",
+    "monitor",
+    "restore_priority",
+    "remove_priority",
+    "decoy_priority"
+  ],
+  "best_baseline": "decoy_priority",
+  "best_baseline_reward_mean": -90.88333333333334
+}

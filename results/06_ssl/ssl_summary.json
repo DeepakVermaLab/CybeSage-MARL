@@ -1,0 +1,6 @@
+{
+  "rows": 6234,
+  "input_dim": 6,
+  "embedding_dim": 32,
+  "epochs": 5
+}

@@ -1,0 +1,6 @@
+{
+  "status": "completed",
+  "baselines_compared": 6,
+  "superiority_claim_ready": true,
+  "claim_boundary": "CybSAGE beat every executed CAGE-4 baseline with positive bootstrap confidence intervals."
+}

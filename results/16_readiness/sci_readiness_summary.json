@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "paper_claim_level": "SCI-ready superiority claim against executed CAGE-4 baselines",
+  "superiority_claim_ready": true,
+  "stage15_superiority_claim_ready": true,
+  "baselines_compared": 6,
+  "min_paired_runs": 30,
+  "recommended_min_paired_runs": 30,
+  "all_positive_ci": true,
+  "claim_boundary": "CybSAGE beat every executed baseline with positive paired bootstrap confidence and enough paired runs."
+}
